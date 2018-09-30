@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import params from './src/params'
 import Field from './src/components/Fields'
 
@@ -20,6 +20,12 @@ export default class App extends Component {
         <Field opened nearMines={6}/>
         <Field opened nearMines={7}/>
         <Field opened nearMines={8}/>
+        <Field mined/>
+        <Field mined opened/>
+        <Field mined opened exploded/>
+        <Field flagged />
+        <Field flagged opened />
+        <Field mined flagged opened />
       </View>
     );
   }
