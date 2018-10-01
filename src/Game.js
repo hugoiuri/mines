@@ -53,7 +53,7 @@ const getNeighbors = (board, row, column) => {
         columns.forEach(c => {
             const different = r !== row || c !== column
             const validRow = r >= 0 && r < board.length
-            const validColumn = c >= 0 && c < board[r].length
+            const validColumn = c >= 0 && c < board[0].length
             
             if (different && validRow && validColumn) {
                 neighbors.push(board[r][c])
@@ -94,7 +94,7 @@ const pendding = field => (field.mined && !field.flagged) || (!field.mined && !f
 
 const wonGame = board => fields(board).filter(pendding).length === 0
 
-const showMines = board => fields(board).fielter(field => field.mined)
+const showMines = board => fields(board).filter(field => field.mined)
     .forEach(field => field.opened = true)
 
 export { 
