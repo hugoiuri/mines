@@ -8,7 +8,8 @@ import {
   openField,
   hadExplosion,
   wonGame,
-  showMines
+  showMines,
+  invertFlag
 } from './src/Game'
 
 export default class App extends Component {
@@ -52,6 +53,18 @@ export default class App extends Component {
     this.setState({board, lost, won})
   }
 
+  onSelectField = (row, column) => {
+    const board = cloneBoard(this.state.board)
+    invertFlag(board, row, column)
+    const won = wonGame(board)
+
+    if (won){
+      Alert.alert('Parabéns', 'Você venceu!')
+    }
+
+    this.setState({ board, won })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -59,7 +72,7 @@ export default class App extends Component {
         <Text style={styles.instructions}>Tamanho da grade:
           {params.getRowsAmount()} x {params.getColumnsAmount()}</Text>
         <View style={styles.board}>
-          <MineField board={this.state.board} onOpenField={this.onOpenfield} />
+          <MineField board={this.state.board} onOpenField={this.onOpenfield} onSelectField={this.onSelectField} />
         </View>
       </View>
     );
